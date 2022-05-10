@@ -1,0 +1,229 @@
+{UTF-8}
+Beef Demand Consumption= INTEG (
+	Beef Demand Consumption-("Demand Increase in Ramadhan & Ied"-Unfulfilled Demand),
+		1000)
+	~	Ton
+	~		|
+
+Beef Distribution Avaliability at Market=
+	Beef Stock-"Distribution in-efficiency ie. hoarding"
+	~	Ton/Month
+	~		|
+
+Beef Domestic Production=
+	Beef Production Capacity*Farmer*Productivity
+	~	Ton/Month
+	~		|
+
+Beef Supply Gap=
+	Desired Beef Projection-(Beef Domestic Production-Unfulfilled Demand)
+	~	Ton/Month
+	~		|
+
+Beef Price Equilibrium=
+	15000
+	~	Rupiah/Month
+	~		|
+
+Beef Production Capacity= INTEG (
+	Beef Production Capacity+Capacity increase,
+		1000)
+	~	Ton/Month
+	~		|
+
+"Demand Increase in Ramadhan & Ied"=
+	Purchasing Power*Sales
+	~	Ton/Month
+	~		|
+
+Decision to invest in capacity=
+	Unfulfilled Demand/Productivity
+	~	Ton/Month
+	~		|
+
+Capacity increase=
+	(Productivity*Decision to invest in capacity)-Beef Production Capacity
+	~	Ton/Month
+	~		|
+
+Farmer= INITIAL(
+	1)
+	~	People
+	~		|
+
+Sales=
+	(Beef Demand Consumption/Beef Distribution Avaliability at Market)*Beef Price Equilibrium
+	~	Rupiah/(Ton*Month)
+	~		|
+
+Unfulfilled Demand=
+	Beef Demand Consumption-Sales
+	~	Ton/Month
+	~		|
+
+Beef Import Product=
+	Beef Supply Gap
+	~	Ton/Month
+	~		|
+
+Beef Stock= INTEG (
+	(Beef Domestic Production+Beef Import Product)-Beef Distribution Avaliability at Market\
+		,
+		1000)
+	~	Ton
+	~		|
+
+Desired Beef Projection=
+	12000
+	~	
+	~		|
+
+"Distribution in-efficiency ie. hoarding"= INITIAL(
+	0.05)
+	~	Dmnl
+	~		|
+
+Purchasing Power= INITIAL(
+	1)
+	~	Rupiah/Month
+	~		|
+
+Productivity=
+	1
+	~	Ton/(People*Month)
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Arial Unicode MS|12||0-0-0|0-0-0|0-0-255|-1--1--1|255-255-255|96,96,67,0
+10,1,Beef Stock,734,295,57,20,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,2,48,493,293,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,3,5,2,100,0,0,22,0,192,0,-1--1--1,,1|(555,293)|
+1,4,5,1,4,0,0,22,0,192,0,-1--1--1,,1|(641,293)|
+11,5,0,599,293,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,6,Beef Domestic Production,599,331,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+11,7,0,727,204,8,6,1,3,0,0,1,0,0,0,0,0,0,0,0,0
+12,8,48,733,148,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,9,11,8,100,0,0,22,0,192,0,-1--1--1,,1|(733,188)|
+1,10,11,1,4,0,0,22,0,192,0,-1--1--1,,1|(733,250)|
+11,11,0,733,219,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,12,Beef Import Product,816,219,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,13,Beef Supply Gap,975,108,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,14,Desired Beef Projection,1185,74,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,15,13,12,1,0,0,0,0,192,0,-1--1--1,,1|(917,154)|
+10,16,Productivity,409,488,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,17,16,6,1,0,0,0,0,192,0,-1--1--1,,1|(512,437)|
+10,18,"Distribution in-efficiency ie. hoarding",1033,431,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,19,Beef Price Equilibrium,770,464,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,20,Purchasing Power,574,613,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,21,Farmer,584,483,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,22,21,6,1,0,0,0,0,192,0,-1--1--1,,1|(630,418)|
+10,23,Decision to invest in capacity,383,626,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,24,48,960,295,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,25,27,1,100,0,0,22,0,192,0,-1--1--1,,1|(829,295)|
+1,26,27,24,4,0,0,22,0,192,0,-1--1--1,,1|(907,295)|
+11,27,0,874,295,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,28,Beef Distribution Avaliability at Market,874,333,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,29,18,28,1,0,0,0,0,192,0,-1--1--1,,1|(966,350)|
+10,30,Beef Demand Consumption,883,693,65,20,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,31,48,1209,693,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,32,34,30,100,0,0,22,0,192,0,-1--1--1,,1|(1004,693)|
+1,33,34,31,4,0,0,22,0,192,0,-1--1--1,,1|(1128,693)|
+11,34,0,1066,693,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,35,Unfulfilled Demand,1066,731,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,36,48,608,690,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,37,39,36,100,0,0,22,0,192,0,-1--1--1,,1|(676,690)|
+1,38,39,30,4,0,0,22,0,192,0,-1--1--1,,1|(774,690)|
+11,39,0,725,690,6,8,34,3,0,0,1,0,0,0,0,0,0,0,0,0
+10,40,"Demand Increase in Ramadhan & Ied",725,728,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+10,41,Sales,890,511,75,30,8,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,42,30,41,1,0,0,0,0,192,0,-1--1--1,,1|(903,607)|
+1,43,20,40,1,0,0,0,0,192,0,-1--1--1,,1|(640,633)|
+1,44,14,13,1,0,0,0,0,192,0,-1--1--1,,1|(1001,68)|
+1,45,35,13,1,0,0,0,0,192,0,-1--1--1,,1|(1135,394)|
+1,46,35,23,1,0,0,0,0,192,0,-1--1--1,,1|(743,808)|
+10,47,Beef Production Capacity,185,396,51,27,3,3,0,0,-1,0,0,0,0,0,0,0,0,0
+12,48,48,184,605,25,15,0,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,49,51,48,100,0,0,22,0,192,0,-1--1--1,,1|(184,554)|
+1,50,51,47,4,0,0,22,0,192,0,-1--1--1,,1|(184,465)|
+11,51,0,184,513,8,6,33,3,0,0,4,0,0,0,0,0,0,0,0,0
+10,52,Capacity increase,267,513,75,30,40,3,0,0,-1,0,0,0,0,0,0,0,0,0
+1,53,47,6,1,0,0,0,0,192,0,-1--1--1,,1|(425,374)|
+1,54,28,41,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,55,6,13,1,0,0,0,0,192,0,-1--1--1,,1|(635,133)|
+1,56,30,35,1,0,0,0,0,192,0,-1--1--1,,1|(1006,637)|
+1,57,41,35,1,0,0,0,0,192,0,-1--1--1,,1|(1013,581)|
+1,58,47,52,1,0,0,0,0,192,0,-1--1--1,,1|(270,435)|
+1,59,23,52,1,0,0,0,0,192,0,-1--1--1,,1|(278,608)|
+1,60,16,52,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,61,19,41,1,0,0,0,0,192,0,-1--1--1,,1|(845,460)|
+1,62,41,40,1,0,0,0,0,192,0,-1--1--1,,1|(750,548)|
+1,63,16,23,1,0,0,0,0,192,0,-1--1--1,,1|(454,596)|
+1,64,1,28,1,0,0,0,0,192,0,-1--1--1,,1|(762,364)|
+///---\\\
+:L<%^E!@
+1:Beef 1.vdfx
+4:Time
+5:Beef Demand Consumption
+9:Beef 1
+19:67,0
+24:0
+25:100
+26:100
+23:0
+15:0,0,0,0,0,0
+27:0,
+34:0,
+42:1
+72:0
+73:0
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+95:0
+96:0
+97:0
+77:0
+78:0
+102:0
+93:0
+94:0
+92:0
+91:0
+90:0
+87:0
+75:
+43:
+103:8,8,8,3,8
